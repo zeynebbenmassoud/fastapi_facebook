@@ -1,6 +1,6 @@
 FROM python:3.9
 
-RUN pip3 install sqlalchemy requests uvicorn fastapi pymysql
+RUN pip3 install sqlalchemy requests uvicorn fastapi pymysql PyMySQL[rsa]
 
 WORKDIR /app
 

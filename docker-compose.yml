@@ -9,9 +9,11 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=scrap_fdata
-      - MYSQL_USER="root"
-     
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=app
+           
     tty: true  
+    restart: always
 
 
   app:
@@ -22,10 +24,12 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    restart: always
+    restart: on-failure
     tty: true  
     environment:
       - MYSQL_DATABASE=scrap_fdata
-      - MYSQL_HOST=db  
-      - MYSQL_USER=root
+      - MYSQL_HOST=db 
+      - MYSQL_USER=app
+      - MYSQL_PORT=3306
+      - MYSQL_PASSWORD=app
 
