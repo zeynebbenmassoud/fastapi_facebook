@@ -1,0 +1,31 @@
+version: "3"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile_sqlite
+    ports:
+      - "3306:3306"  
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=scrap_fdata
+      - MYSQL_USER="root"
+     
+    tty: true  
+
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile_app  
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: always
+    tty: true  
+    environment:
+      - MYSQL_DATABASE=scrap_fdata
+      - MYSQL_HOST=db  
+      - MYSQL_USER=root
+

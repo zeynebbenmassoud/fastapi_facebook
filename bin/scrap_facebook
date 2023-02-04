@@ -1,0 +1,7 @@
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.post("/")
+def scrap_facebook_data():
+  return {"hello":1}

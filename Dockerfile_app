@@ -1,0 +1,10 @@
+FROM python:3.9
+
+RUN pip3 install sqlalchemy requests uvicorn fastapi pymysql
+
+WORKDIR /app
+
+COPY scrap_fdata.py ./
+
+CMD ["uvicorn", "scrap_fdata:app", "--host", "0.0.0.0", "--port", "8000"] 
+
